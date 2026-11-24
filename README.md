@@ -69,4 +69,5 @@ git clone https://github.com/TigerVpnGit/Bio.git
 
 تغییر رنگ‌ها: به فایل css/style.css بروید و متغیرهای :root و html.dark را تغییر دهید.
 
-</div><br> <br><div align="center"> <p>ساخته شده با ❤️ برای کاربران <strong>Tiger VPN</strong></p> <p>© 2024 Tiger VPN. All rights reserved.</p> </div> ```
+</div><br> <br>
+<div align="center"> <p>ساخته شده با ❤️ برای کاربران <strong>Tiger VPN</strong></p> <p>© 2024 Tiger VPN. All rights reserved.</p> </div> ```
