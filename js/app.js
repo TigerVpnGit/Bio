@@ -6,10 +6,10 @@ const $$ = (sel) => document.querySelectorAll(sel);
 const State = {
   filter: 'all',
   lang: 'fa',
-  themeMode: 'auto' // 'auto' | 'light' | 'dark'
+  themeMode: 'auto'
 };
 
-/* ================= ذخیره‌سازی امن ================= */
+/* ================= ذخیره‌سازی ================= */
 const Storage = {
   get(key, fallback = null) {
     try { return localStorage.getItem(key) ?? fallback; }
@@ -28,28 +28,21 @@ function getSystemIsDark() {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) return true;
     if (window.matchMedia('(prefers-color-scheme: light)').matches) return false;
   }
-  // Fallback: بر اساس ساعت محلی (منطقه)
   const h = new Date().getHours();
   return !(h >= 6 && h < 18);
 }
 
 function applyTheme() {
-  const dark = State.themeMode === 'auto'
-    ? getSystemIsDark()
-    : State.themeMode === 'dark';
-
+  const dark = State.themeMode === 'auto' ? getSystemIsDark() : State.themeMode === 'dark';
   document.documentElement.classList.toggle('dark', dark);
-
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute('content', dark ? '#0d1024' : '#eaf3ff');
-
   renderThemeIcon();
 }
 
 function renderThemeIcon() {
   const iconEl = $('#themeIcon');
   if (!iconEl) return;
-
   const icons = {
     auto: '<circle cx="12" cy="12" r="9"/><path d="M12 3v18" fill="currentColor"/><path d="M12 3a9 9 0 0 0 0 18" fill="currentColor" stroke="none"/><path d="M12 3a9 9 0 0 1 0 18" fill="none"/>',
     light: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
@@ -90,7 +83,7 @@ function applyLang() {
   const label = $('#langLabel');
   if (label) label.textContent = isRTL ? 'EN' : 'فا';
 
-  render(); // بازرندر کارت‌ها با زبان جدید
+  render();
 }
 
 function toggleLang() {
@@ -107,12 +100,9 @@ async function copyText(text) {
     } else {
       const ta = document.createElement('textarea');
       ta.value = text;
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
     }
     showToast(TRANSLATIONS[State.lang].copySuccess);
   } catch {
@@ -129,6 +119,25 @@ function showToast(msg) {
   toast.classList.add('show');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+}
+
+/* ================= مودال QR ================= */
+function showQRModal(url) {
+  const modal = $('#qrModal');
+  const qrImage = $('#qrImage');
+  const qrLinkText = $('#qrLinkText');
+  
+  // استفاده از API رایگان برای ساخت QR کد
+  const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`;
+  
+  qrImage.src = qrApiUrl;
+  qrLinkText.textContent = url;
+  
+  modal.classList.add('active');
+}
+
+function closeQRModal() {
+  $('#qrModal').classList.remove('active');
 }
 
 /* ================= رندر کارت‌ها ================= */
@@ -163,21 +172,29 @@ function render() {
     a.target = '_blank';
     a.rel = 'noopener noreferrer';
     a.style.setProperty('--brand', l.brand);
-    a.style.animationDelay = (i * 0.04) + 's';
+    
+    // تاخیر پلکانی برای انیمیشن قوی‌تر
+    a.style.animationDelay = (i * 0.08) + 's';
 
-    const badgeHTML = l.badge && l.badge[lang]
-      ? `<span class="badge">${l.badge[lang]}</span>` : '';
+    const badgeHTML = l.badge && l.badge[lang] ? `<span class="badge">${l.badge[lang]}</span>` : '';
 
     a.innerHTML = `
       ${badgeHTML}
       <div class="card-top">
         <div class="card-icon">${l.icon}</div>
-        <button class="copy-btn" type="button" data-url="${l.url}" title="Copy">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="9" y="9" width="13" height="13" rx="2"/>
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-          </svg>
-        </button>
+        <div class="card-actions">
+          <button class="action-btn copy-btn" type="button" data-url="${l.url}" title="Copy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
+          <button class="action-btn qr-btn" type="button" data-url="${l.url}" title="QR Code">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          </button>
+        </div>
       </div>
       <div class="card-name">${l.name[lang] || l.name.fa}</div>
       <div class="card-desc">${l.desc[lang] || l.desc.fa}</div>
@@ -187,9 +204,14 @@ function render() {
     const copyBtn = a.querySelector('.copy-btn');
     if (copyBtn) {
       copyBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        copyText(l.url);
+        e.preventDefault(); e.stopPropagation(); copyText(l.url);
+      });
+    }
+
+    const qrBtn = a.querySelector('.qr-btn');
+    if (qrBtn) {
+      qrBtn.addEventListener('click', (e) => {
+        e.preventDefault(); e.stopPropagation(); showQRModal(l.url);
       });
     }
 
@@ -199,11 +221,9 @@ function render() {
 
 /* ================= رویدادها ================= */
 function bindEvents() {
-  // جستجو
   const searchInput = $('#search');
   if (searchInput) searchInput.addEventListener('input', render);
 
-  // تب‌ها
   const tabs = $('#tabs');
   if (tabs) {
     tabs.addEventListener('click', (e) => {
@@ -216,11 +236,9 @@ function bindEvents() {
     });
   }
 
-  // تم
   const themeBtn = $('#themeToggle');
   if (themeBtn) themeBtn.addEventListener('click', cycleTheme);
 
-  // زبان
   const langBtn = $('#langToggle');
   if (langBtn) langBtn.addEventListener('click', toggleLang);
 
@@ -229,13 +247,8 @@ function bindEvents() {
   const fallback = $('#brandFallback');
   if (logo && fallback) {
     logo.addEventListener('error', () => {
-      logo.style.display = 'none';
-      fallback.style.display = 'inline-block';
+      logo.style.display = 'none'; fallback.style.display = 'inline-block';
     });
-    if (logo.complete && logo.naturalWidth === 0) {
-      logo.style.display = 'none';
-      fallback.style.display = 'inline-block';
-    }
   }
 
   // گوش دادن به تغییر تم سیستم
@@ -245,27 +258,33 @@ function bindEvents() {
     if (mq.addEventListener) mq.addEventListener('change', handler);
     else if (mq.addListener) mq.addListener(handler);
   }
+
+  // بستن مودال QR
+  const closeModalBtn = $('#closeModal');
+  const modalOverlay = $('#qrModal');
+  if (closeModalBtn && modalOverlay) {
+    closeModalBtn.addEventListener('click', closeQRModal);
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeQRModal();
+    });
+  }
 }
 
 /* ================= PWA ================= */
 function registerSW() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./service-worker.js')
-        .then(reg => console.log('✅ SW registered:', reg.scope))
-        .catch(err => console.warn('⚠ SW failed:', err));
+      navigator.serviceWorker.register('./service-worker.js').catch(() => {});
     });
   }
 }
 
 /* ================= راه‌اندازی ================= */
 function init() {
-  // بازیابی تنظیمات
   State.lang = Storage.get('tiger-lang', 'fa') === 'en' ? 'en' : 'fa';
   State.themeMode = Storage.get('tiger-theme-mode', 'auto');
   if (!THEME_CYCLE.includes(State.themeMode)) State.themeMode = 'auto';
 
-  // پاک کردن جستجو (رفع باگ حالت اول)
   const searchInput = $('#search');
   if (searchInput) searchInput.value = '';
 
@@ -273,11 +292,7 @@ function init() {
   applyLang();
   bindEvents();
   registerSW();
-
-  // اطمینان از رندر بعد از همه‌چیز
   render();
-
-  console.log('🐯 Tiger VPN app ready —', LINKS_DATA.length, 'links loaded');
 }
 
 if (document.readyState === 'loading') {
