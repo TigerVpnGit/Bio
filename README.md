@@ -68,8 +68,9 @@ cd Bio
 تغییر لینک‌ها: به فایل js/data.js بروید و آبجکت‌های داخل آرایه LINKS_DATA را ویرایش کنید.
 
 تغییر رنگ‌ها: به فایل css/style.css بروید و متغیرهای :root و html.dark را تغییر دهید.
-
 <br>
- <br><div align="center">
- <p>ساخته شده با ❤️ برای کاربران <strong>Tiger VPN</strong></p> <p>© 2024 Tiger VPN. All rights reserved.</p>
- </div> ```
+
+<div align="center">
+  <p>ساخته شده با ❤️ برای کاربران <strong>Tiger VPN</strong></p>
+  <p>© 2024 Tiger VPN. All rights reserved.</p>
+</div>
