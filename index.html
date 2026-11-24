@@ -4,21 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
   <meta name="theme-color" content="#0d1024">
-  <meta name="description" content="Tiger VPN — تمام لینک‌های شبکه‌های اجتماعی در یک جا / All social media links in one place">
+  <meta name="description" content="Tiger VPN — تمام لینک‌های شبکه‌های اجتماعی در یک جا">
 
   <title>Tiger VPN | شبکه‌های اجتماعی</title>
 
-  <!-- PWA -->
+  <!-- PWA & Icons -->
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Tiger VPN">
   <meta name="mobile-web-app-capable" content="yes">
 
-  <!-- Font -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -28,7 +27,6 @@
 </head>
 <body>
 
-  <!-- کنترل‌های شناور -->
   <div class="floating-controls">
     <button class="ctrl-btn glass" id="themeToggle" data-i18n-title="themeTitle" title="تغییر تم">
       <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
@@ -38,7 +36,6 @@
     </button>
   </div>
 
-  <!-- هدر -->
   <header class="header">
     <div class="logo-wrap">
       <img src="assets/logo.png" alt="Tiger VPN" class="logo-img" id="brandLogo">
@@ -48,7 +45,6 @@
     <p class="brand-sub" data-i18n="brandSub">همه‌ی راه‌های ارتباط با ما در یک جا</p>
   </header>
 
-  <!-- جستجو و فیلتر -->
   <div class="controls">
     <div class="search-box">
       <input type="text" id="search" data-i18n-placeholder="searchPlaceholder" placeholder="جستجوی شبکه اجتماعی...">
@@ -66,7 +62,6 @@
     </div>
   </div>
 
-  <!-- گرید کارت‌ها -->
   <main class="grid" id="grid"></main>
 
   <footer class="footer">
@@ -75,6 +70,18 @@
 
   <div class="toast" id="toast">
     <span id="toastText">✓ لینک کپی شد</span>
+  </div>
+
+  <!-- مودال نمایش QR کد -->
+  <div class="modal-overlay" id="qrModal">
+    <div class="modal-content glass">
+      <button class="close-btn" id="closeModal">×</button>
+      <h3 id="qrTitle" style="margin-bottom: 15px; font-size: 18px;">اسکن کنید</h3>
+      <div class="qr-wrapper">
+        <img id="qrImage" src="" alt="QR Code">
+      </div>
+      <p id="qrLinkText" class="qr-link" dir="ltr"></p>
+    </div>
   </div>
 
   <script src="js/data.js"></script>
