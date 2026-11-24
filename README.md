@@ -69,3 +69,33 @@ tiger-vpn-links/
     ├── icon-512.png
     ├── favicon-32.png
     └── ...
+
+🚀 راه‌اندازی و اجرای پروژه (Installation)
+برای اجرای این پروژه روی سیستم خود، نیازی به نصب هیچ پکیجی (مانند Node.js یا npm) ندارید!
+
+ریپازیتوری را کلون کنید:
+
+bash
+git clone https://github.com/your-username/tiger-vpn-links.git
+وارد پوشه پروژه شوید:
+
+bash
+cd tiger-vpn-links
+فایل index.html را مستقیماً در مرورگر خود باز کنید.
+(برای تست کامل قابلیت‌های PWA و Service Worker، پیشنهاد می‌شود از افزونه Live Server در VS Code استفاده کنید).
+
+🌐 انتشار در GitHub Pages
+به تنظیمات ریپازیتوری خود در گیت‌هاب بروید (Settings > Pages).
+
+در بخش Build and deployment، شاخه main را انتخاب کرده و روی Save کلیک کنید.
+
+سایت شما پس از چند لحظه در آدرس https://your-username.github.io/tiger-vpn-links/ در دسترس خواهد بود.
+
+⚙️ شخصی‌سازی (Customization)
+تغییر لینک‌ها: به فایل js/data.js بروید و آبجکت‌های داخل آرایه LINKS_DATA را ویرایش کنید.
+
+تغییر رنگ‌ها: به فایل css/style.css بروید و متغیرهای :root و html.dark را تغییر دهید.
+
+افزودن شبکه اجتماعی جدید: یک آبجکت جدید به فایل data.js اضافه کنید و آیکون SVG آن را در فیلد icon قرار دهید.
+
+<div align="center"> <p>ساخته شده با ❤️ برای کاربران <strong>Tiger VPN</strong></p> <p>© 2024 Tiger VPN. All rights reserved.</p> </div> ```
