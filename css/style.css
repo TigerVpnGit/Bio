@@ -122,58 +122,131 @@ html.dark body::before {
 }
 .ctrl-btn:hover { color: var(--accent); transform: rotate(20deg); }
 
-/* ================= ۶. هدر (تغییرات ظاهری) ================= */
-.header { text-align: center; padding: 80px 20px 40px; }
+/* ================= ۶. هدر (طراحی جدید و انیمیشن‌ها) ================= */
+.header { 
+  text-align: center; 
+  padding: 60px 20px 30px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: floatHeader 6s ease-in-out infinite;
+}
 
 .logo-wrap {
   display: inline-flex;
   align-items: center;
-  justify-content: center; /* وسط چین کردن محتوای کادر */
-  gap: 20px; /* فاصله بیشتر بین عکس و متن */
-  padding: 20px 45px; /* بزرگتر شدن کادر */
+  justify-content: center;
+  gap: 12px; /* فاصله کمتر بین لوگو و متن */
+  padding: 10px 25px; /* کادر کوچک‌تر و جمع‌وجورتر شد */
   border-radius: 999px;
   background: var(--glass-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  animation: pop .8s cubic-bezier(.2,.9,.3,1.4);
+  position: relative;
+  overflow: hidden;
+  animation: pop 1s cubic-bezier(.2,.9,.3,1.4), glowPulse 3s infinite alternate;
+}
+
+/* انیمیشن درخشش روی کادر */
+.logo-wrap::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+  transform: rotate(45deg);
+  animation: shine 4s infinite;
 }
 
 .logo-img {
-  width: 65px; height: 65px; /* بزرگتر شدن لوگو */
+  width: 42px; height: 42px; /* سایز لوگو متناسب با کادر کوچیک شد */
   object-fit: contain;
-  filter: drop-shadow(0 0 12px rgba(168,85,247,.5));
-  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(168,85,247,.6));
 }
 .logo-emoji {
-  font-size: 50px;
-  filter: drop-shadow(0 0 12px rgba(168,85,247,.6));
-  animation: float 4s ease-in-out infinite;
+  font-size: 38px;
+  filter: drop-shadow(0 0 8px rgba(168,85,247,.6));
 }
 
-/* اعمال فونت اختصاصی به متن تایگر وی پی ان */
+/* فونت و افکت متن اصلی */
 .brand-name { 
   font-family: 'Black Future', "Vazirmatn", sans-serif; 
-  font-size: 38px; /* بزرگتر شدن متن */
+  font-size: 30px; 
   font-weight: 800; 
-  letter-spacing: 2px; 
+  letter-spacing: 1px; 
+  background-size: 200% auto;
+  animation: textShimmer 3s linear infinite;
 }
 
-.brand-sub { 
-  color: var(--muted); 
-  font-size: 16px; /* بزرگتر شدن متن پایین */
-  margin-top: 20px; 
+/* بخش متن‌های پایین (دو زبانه) */
+.brand-sub-wrap {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: 0.3s;
+}
+
+.brand-sub-fa { 
+  color: var(--text); 
+  font-size: 20px; /* بزرگ‌تر شد */
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.sub-divider {
+  color: var(--accent);
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.brand-sub-en {
+  color: var(--muted);
+  font-size: 15px;
+  font-family: "Inter", "Segoe UI", sans-serif;
   font-weight: 500;
+  letter-spacing: 0.5px;
+  direction: ltr;
 }
 
-@keyframes float {
-  0%,100% { transform: translateY(0) rotate(-5deg); }
-  50% { transform: translateY(-8px) rotate(5deg); }
-}
+/* ================= کی‌فریم‌های انیمیشن ================= */
 @keyframes pop {
   from { opacity: 0; transform: scale(.7); }
   to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes floatHeader {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 10px rgba(168,85,247,0.1), 0 0 20px rgba(56,189,248,0.1); border-color: var(--glass-border); }
+  100% { box-shadow: 0 0 25px rgba(168,85,247,0.5), 0 0 40px rgba(56,189,248,0.3); border-color: rgba(168,85,247,0.6); }
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 100%; }
+  100% { left: 100%; }
+}
+
+@keyframes textShimmer {
+  to { background-position: 200% center; }
+}
+
+/* ریسپانسیو برای موبایل */
+@media (max-width: 500px) {
+  .header { padding-top: 80px; }
+  .logo-wrap { padding: 8px 20px; gap: 10px; }
+  .logo-img, .logo-emoji { width: 36px; height: 36px; font-size: 32px; }
+  .brand-name { font-size: 26px; }
+  .brand-sub-fa { font-size: 18px; }
+  .brand-sub-en { font-size: 13px; }
 }
 
 /* ================= ۷. جستجو و تب ================= */
