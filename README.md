@@ -10,13 +10,15 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-[مشاهده دموی زنده 🌐](https://your-username.github.io/tiger-vpn-links/) • [گزارش مشکل 🐛](https://github.com/your-username/tiger-vpn-links/issues) • [درخواست ویژگی 💡](https://github.com/your-username/tiger-vpn-links/issues)
+[مشاهده دموی زنده 🌐](https://tigervpngit.github.io/Bio/) • [گزارش مشکل 🐛](https://github.com/TigerVpnGit/Bio/issues)
 
 </div>
 
 ---
 
-## 📖 درباره پروژه (About)
+<div dir="rtl">
+
+### 📖 درباره پروژه (About)
 
 **Tiger VPN Social Hub** یک وب‌اپلیکیشن مدرن، سبک و فوق‌العاده سریع است که تمامی لینک‌های ارتباطی، شبکه‌های اجتماعی، ربات‌های فروش و پشتیبانی تایگر وی پی ان را در یک صفحه جمع‌آوری کرده است. 
 
@@ -24,78 +26,51 @@
 
 ---
 
-## ✨ ویژگی‌های کلیدی (Features)
+### ✨ ویژگی‌های کلیدی (Features)
 
-- 🎨 **طراحی مدرن Glassmorphism**: استفاده از افکت شیشه‌ای، هاله‌های نئونی و پس‌زمینه‌های گرادیانتی جذاب.
-- 📱 **قابلیت نصب (PWA)**: قابلیت نصب روی اندروید، iOS و ویندوز به عنوان یک اپلیکیشن مستقل.
-- 🌗 **تم هوشمند (Dark/Light Mode)**: پشتیبانی از تم تاریک و روشن با قابلیت تشخیص خودکار سیستم‌عامل و زمان محلی.
-- 🌍 **دو زبانه (Bilingual)**: پشتیبانی کامل از زبان‌های فارسی (RTL) و انگلیسی (LTR) با قابلیت تغییر آنی.
-- 📸 **ساخت QR Code اختصاصی**: با کلیک روی هر کارت، می‌توانید کد QR مربوط به آن لینک را برای اسکن کردن دریافت کنید.
-- 📋 **کپی سریع لینک**: دکمه اختصاصی برای کپی کردن لینک هر شبکه با یک کلیک و نمایش پیام Toast.
-- 🔍 **جستجوی زنده**: جستجوی لحظه‌ای بین تمام لینک‌ها با قابلیت فیلتر بر اساس دسته‌بندی (شبکه‌ها، پشتیبانی، کانال‌ها).
-- ⚡ **عملکرد آفلاین**: مجهز به Service Worker برای کش کردن فایل‌ها و کارکرد بدون اینترنت.
-- 🖋️ **فونت اختصاصی**: استفاده از فونت سفارشی `Black Future` برای لوگو و برندینگ.
-
----
-
-## 🛠 تکنولوژی‌های استفاده شده (Tech Stack)
-
-- **Frontend**: HTML5, CSS3 (Custom Properties, Flexbox, Grid, Backdrop-filter), Vanilla JavaScript (ES6+)
-- **PWA**: Web App Manifest, Service Workers
-- **Tools**: [QR Server API](https://goqr.me/api/) (برای تولید کدهای QR)
+* 🎨 **طراحی مدرن Glassmorphism**: استفاده از افکت شیشه‌ای، هاله‌های نئونی و پس‌زمینه‌های گرادیانتی جذاب.
+* 📱 **قابلیت نصب (PWA)**: قابلیت نصب روی اندروید، iOS و ویندوز به عنوان یک اپلیکیشن مستقل.
+* 🌗 **تم هوشمند (Dark/Light Mode)**: پشتیبانی از تم تاریک و روشن با قابلیت تشخیص خودکار سیستم‌عامل.
+* 🌍 **دو زبانه (Bilingual)**: پشتیبانی کامل از زبان‌های فارسی (RTL) و انگلیسی (LTR) با قابلیت تغییر آنی.
+* 📸 **ساخت QR Code اختصاصی**: با کلیک روی هر کارت، می‌توانید کد QR مربوط به آن لینک را دریافت کنید.
+* 📋 **کپی سریع لینک**: دکمه اختصاصی برای کپی کردن لینک هر شبکه با یک کلیک.
+* 🔍 **جستجوی زنده**: جستجوی لحظه‌ای بین تمام لینک‌ها با قابلیت فیلتر بر اساس دسته‌بندی.
+* ⚡ **عملکرد آفلاین**: مجهز به Service Worker برای کش کردن فایل‌ها و کارکرد بدون اینترنت.
 
 ---
 
-## 📂 ساختار پروژه (Folder Structure)
+### 🛠 تکنولوژی‌های استفاده شده (Tech Stack)
 
-```text
-tiger-vpn-links/
-├── index.html              # صفحه اصلی
-├── manifest.json           # تنظیمات PWA (نام، آیکون، رنگ)
-├── service-worker.js       # کدهای آفلاین‌سازی و کش
-├── README.md               # این فایل
-├── assets/                 # فایل‌های گرافیکی اصلی
-│   └── logo.png            # لوگوی بزرگ سایت
-├── css/
-│   └── style.css           # استایل‌های اصلی و انیمیشن‌ها
-├── fonts/
-│   └── BlackFuture.otf     # فونت اختصاصی برند
-├── js/
-│   ├── data.js             # داده‌های لینک‌ها (قابل ویرایش)
-│   ├── i18n.js             # فایل ترجمه‌ها (فارسی/انگلیسی)
-│   └── app.js              # منطق اصلی، تم، زبان و مودال QR
-└── icons/                  # آیکون‌های PWA و فاویکن
-    ├── icon-192.png
-    ├── icon-512.png
-    ├── favicon-32.png
-    └── ...
+* **Frontend**: HTML5, CSS3 (Custom Properties, Flexbox, Grid), Vanilla JavaScript (ES6+)
+* **PWA**: Web App Manifest, Service Workers
+* **Tools**: QR Server API
+
 ---
-🚀 راه‌اندازی و اجرای پروژه (Installation)
+
+### 🚀 راه‌اندازی و اجرای پروژه (Installation)
+
 برای اجرای این پروژه روی سیستم خود، نیازی به نصب هیچ پکیجی (مانند Node.js یا npm) ندارید!
 
-ریپازیتوری را کلون کنید:
+۱. ریپازیتوری را کلون کنید:
+</div>
 
-bash
-git clone https://github.com/your-username/tiger-vpn-links.git
-وارد پوشه پروژه شوید:
-
-bash
-cd tiger-vpn-links
-فایل index.html را مستقیماً در مرورگر خود باز کنید.
-(برای تست کامل قابلیت‌های PWA و Service Worker، پیشنهاد می‌شود از افزونه Live Server در VS Code استفاده کنید).
+```bash
+git clone https://github.com/TigerVpnGit/Bio.git
+<div dir="rtl">
+۳. فایل index.html را مستقیماً در مرورگر خود باز کنید.
 
 🌐 انتشار در GitHub Pages
-به تنظیمات ریپازیتوری خود در گیت‌هاب بروید (Settings > Pages).
-
-در بخش Build and deployment، شاخه main را انتخاب کرده و روی Save کلیک کنید.
-
-سایت شما پس از چند لحظه در آدرس https://your-username.github.io/tiger-vpn-links/ در دسترس خواهد بود.
+۱. به تنظیمات ریپازیتوری خود در گیت‌هاب بروید (Settings > Pages).
+۲. در بخش Build and deployment، شاخه main را انتخاب کرده و روی Save کلیک کنید.
+۳. سایت شما در آدرس https://tigervpngit.github.io/Bio/ در دسترس خواهد بود.
 
 ⚙️ شخصی‌سازی (Customization)
 تغییر لینک‌ها: به فایل js/data.js بروید و آبجکت‌های داخل آرایه LINKS_DATA را ویرایش کنید.
 
 تغییر رنگ‌ها: به فایل css/style.css بروید و متغیرهای :root و html.dark را تغییر دهید.
 
-افزودن شبکه اجتماعی جدید: یک آبجکت جدید به فایل data.js اضافه کنید و آیکون SVG آن را در فیلد icon قرار دهید.
+</div><br> <br><div align="center"> <p>ساخته شده با ❤️ برای کاربران <strong>Tiger VPN</strong></p> <p>© 2024 Tiger VPN. All rights reserved.</p> </div> ```
+💡 چرا این نسخه درست کار می‌کنه؟
+من از تگ <div dir="rtl"> استفاده کردم. این تگ به مرورگر میگه: "هر چیزی که داخل این تگ هست رو راست‌چین کن". به این ترتیب، خط تیره‌ها (-) و علامت‌های شارپ (#) سر جای خودشون (سمت چپ) می‌مونن و گیت‌هاب اون‌ها رو به درستی به عنوان تیتر و لیست میشناسه.
 
-<div align="center"> <p>ساخته شده با ❤️ برای کاربران <strong>Tiger VPN</strong></p> <p>© 2024 Tiger VPN. All rights reserved.</p> </div> ```
+همچنین کدهای bash (دستورات ترمینال) رو بیرون از حالت راست‌چین گذاشتم تا کدها دقیقاً مثل حالت عادی انگلیسی (از چپ به راست) نمایش داده بشن.
